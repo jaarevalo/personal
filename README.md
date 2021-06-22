@@ -1,2 +1,3 @@
 # personal
-Personal repo
+Personal repo for some awesome tests and examples
+
