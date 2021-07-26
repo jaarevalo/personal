@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "/notes", produces = "application/json")
 public class NoteRestController implements NoteController {
