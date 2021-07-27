@@ -44,8 +44,8 @@ public class NoteRestController implements NoteController {
         throws Exception {
 
         try {
-            Note noteFromStorage = noteQuery.findById(id);
-            NoteResponse noteResponse = noteMapper.from(noteFromStorage);
+            final Note noteFromStorage = noteQuery.findById(id);
+            final NoteResponse noteResponse = noteMapper.from(noteFromStorage);
             return new ResponseEntity<>(noteResponse, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
@@ -56,10 +56,10 @@ public class NoteRestController implements NoteController {
     @PostMapping
     @Override
     public ResponseEntity<NoteResponse> create(@RequestBody NoteRequest noteDto) {
-        Note draftNote = noteMapper.from(noteDto);
+        final Note draftNote = noteMapper.from(noteDto);
 
-        Note createdNote = noteCommand.addNote(draftNote);
-        NoteResponse noteResponse = noteMapper.from(createdNote);
+        final Note createdNote = noteCommand.addNote(draftNote);
+        final NoteResponse noteResponse = noteMapper.from(createdNote);
 
         return new ResponseEntity<NoteResponse>(noteResponse, HttpStatus.OK);
     }
@@ -67,9 +67,9 @@ public class NoteRestController implements NoteController {
     @PutMapping(value = "/{id}")
     @Override
     public ResponseEntity<NoteResponse> updateById(@RequestBody NoteRequest noteDto, @PathVariable(value = "id") Long id) throws Exception {
-        Note draftNote = noteMapper.from(noteDto, id);
-        Note updatedNote = noteCommand.updateNote(draftNote, id);
-        NoteResponse noteResponse = noteMapper.from(updatedNote);
+        final Note draftNote = noteMapper.from(noteDto, id);
+        final Note updatedNote = noteCommand.updateNote(draftNote, id);
+        final NoteResponse noteResponse = noteMapper.from(updatedNote);
         return new ResponseEntity<>(noteResponse, HttpStatus.OK);
     }
 
