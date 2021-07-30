@@ -31,7 +31,7 @@ public class NoteCommandService implements NoteCommand{
     public Note updateNote(Note draftNote, Long id) {
         Optional<Note> noteToUpdateOpt = noteRepository.findById(id);
         if(noteToUpdateOpt.isPresent()){
-            Note noteToUpdate = noteToUpdateOpt.get();
+            final Note noteToUpdate = noteToUpdateOpt.get();
             noteToUpdate.setText(draftNote.getText());
             log.info("Updating note with id {}", id);
             return noteRepository.save(noteToUpdate);
